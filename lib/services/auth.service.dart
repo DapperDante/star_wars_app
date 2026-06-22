@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:star_wars/core/api/auth/models/profile.model.dart';
 import 'package:star_wars/services/SharedPreferences.service.dart';
 
 class AuthService extends ChangeNotifier {
@@ -22,7 +23,18 @@ class AuthService extends ChangeNotifier {
     }
     return true;
   }
-
+  Future<ProfileModel> fetchProfile() async {
+    try{
+      final response = await _api.get('$_baseUrl/me');
+      return ProfileModel.fromJson(response.data);
+    } catch (e) {
+      rethrow;
+    }
+  }
+  Future<void> signOut() async {
+    await _prefs.removeToken();
+    notifyListeners();
+  }
   Future<bool> isAuthenticated() async {
     final token = await _prefs.getToken();
     return token != null;

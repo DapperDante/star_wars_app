@@ -36,7 +36,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    resizeToAvoidBottomInset: false,
     body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

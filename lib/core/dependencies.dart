@@ -9,9 +9,9 @@ import 'package:star_wars/services/planet.service.dart';
 import 'package:star_wars/services/vehicle.service.dart';
 
 List<SingleChildWidget> providers = [
-  Provider(create: (_) => ApiSwapiClient()),
-  Provider(create: (_) => ApiAuthClient()),
   Provider(create: (_) => SharedPreferencesService()),
+  Provider(create: (_) => ApiSwapiClient()),
+  Provider(create: (context) => ApiAuthClient(prefs: context.read())),
   Provider(
     create: (context) => PlanetService(api: context.read<ApiSwapiClient>().client),
   ),

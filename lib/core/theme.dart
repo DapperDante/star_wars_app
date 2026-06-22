@@ -7,6 +7,13 @@ ThemeData get themeDark => ThemeData(
     TargetPlatform.android: ZoomPageTransitionsBuilder(),
     TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
   }),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: colorSchemeDark.primary,
+      foregroundColor: colorSchemeDark.onPrimary,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    ),
+  ),
 );
 
 ThemeData get themeLight => ThemeData(

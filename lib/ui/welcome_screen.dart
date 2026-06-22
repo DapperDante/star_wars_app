@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intro_slider/intro_slider.dart';
-import 'package:star_wars/core/router/routes.dart';
 import 'package:star_wars/services/auth.service.dart';
 
 class IntroScreenDefault extends StatefulWidget {

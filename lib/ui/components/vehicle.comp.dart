@@ -27,28 +27,25 @@ class VehicleCard extends StatelessWidget {
             ),
           ],
         ),
-        back: Expanded(
-          flex: 7,
-          child: Column(
-            spacing: 3,
-            children: vehicle.relevantInfo.entries
-                .map(
-                  (entry) => Row(
-                    spacing: 5,
-                    children: [
-                      Text('${entry.key}: '),
-                      Expanded(
-                        child: Text(
-                          entry.value,
-                          textAlign: TextAlign.end,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+        back: Column(
+          spacing: 3,
+          children: vehicle.relevantInfo.entries
+              .map(
+                (entry) => Row(
+                  spacing: 5,
+                  children: [
+                    Text('${entry.key}: '),
+                    Expanded(
+                      child: Text(
+                        entry.value,
+                        textAlign: TextAlign.end,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                )
-                .toList(),
-          ),
+                    ),
+                  ],
+                ),
+              )
+              .toList(),
         ),
       ),
     ),
