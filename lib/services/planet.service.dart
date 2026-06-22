@@ -16,7 +16,7 @@ class PlanetService {
       rethrow;
     }
   }
-  Future<Planet> fetchPlanet(int id) async {
+  Future<Planet> fetchPlanet(String id) async {
     try{
       final response = await _api.get('$_baseUrl/$id');
       return Planet.fromJson(response.data);

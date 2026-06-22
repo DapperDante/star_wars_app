@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:star_wars/core/router/routes.dart';
 import 'package:star_wars/services/auth.service.dart';
 import 'package:star_wars/ui/Login_Screen.dart';
+import 'package:star_wars/ui/detail/planet_screen.dart';
 import 'package:star_wars/ui/home/home/home_screen.dart';
 import 'package:star_wars/ui/home/home_layout.dart';
 import 'package:star_wars/ui/home/home/home_view_model.dart';
@@ -12,7 +13,8 @@ import 'package:star_wars/ui/welcome_screen.dart';
 
 GoRouter appRouter(AuthService auth) => GoRouter(
   refreshListenable: auth,
-  initialLocation: Routes.profile,
+  initialLocation: Routes.home,
+  debugLogDiagnostics: true,
   routes: [
     GoRoute(
       path: Routes.login,
@@ -68,6 +70,13 @@ GoRouter appRouter(AuthService auth) => GoRouter(
         if (!isFirstTime) return Routes.login;
         return null;
       },
+    ),
+    GoRoute(
+      path: '${Routes.planet}/:id',
+      builder: (context, state) => PlanetScreen(
+        planetService: context.read(),
+        id: state.pathParameters['id']!,
+      ),
     ),
   ],
 );

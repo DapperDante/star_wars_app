@@ -1,9 +1,11 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:star_wars/core/api/swapi/models/film.model.dart';
 import 'package:star_wars/core/api/swapi/models/planet.model.dart';
 import 'package:star_wars/core/api/swapi/models/vehicle.model.dart';
+import 'package:star_wars/core/router/routes.dart';
 import 'package:star_wars/ui/components/film.comp.dart';
 import 'package:star_wars/ui/components/planet.comp.dart';
 import 'package:star_wars/ui/components/vehicle.comp.dart';
@@ -53,7 +55,10 @@ class _HomeState extends State<HomeScreen> {
                   .map(
                     (i) => Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: PlanetCard(planet: i),
+                      child: PlanetCard(
+                        planet: i,
+                        onTap: () => context.push('${Routes.planet}/${i.id}')
+                      ),
                     ),
                   )
                   .toList(),

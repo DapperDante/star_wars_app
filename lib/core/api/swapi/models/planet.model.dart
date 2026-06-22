@@ -13,6 +13,7 @@ class Planet {
     DateTime created;
     DateTime edited;
     String url;
+    String id;
 
     Planet({
         required this.name,
@@ -29,6 +30,7 @@ class Planet {
         required this.created,
         required this.edited,
         required this.url,
+        required this.id
     });
 
     factory Planet.fromJson(Map<String, dynamic> json) => Planet(
@@ -46,6 +48,7 @@ class Planet {
         created: DateTime.parse(json["created"]),
         edited: DateTime.parse(json["edited"]),
         url: json["url"],
+        id: json["url"].split('/').reversed.first
     );
     
     Map<String, String> get relevantInfo => {
