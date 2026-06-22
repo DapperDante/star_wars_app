@@ -10,6 +10,7 @@ import 'package:star_wars/ui/components/film.comp.dart';
 import 'package:star_wars/ui/components/planet.comp.dart';
 import 'package:star_wars/ui/components/vehicle.comp.dart';
 import 'package:star_wars/ui/home/home/home_view_model.dart';
+import 'package:star_wars/ui/components/shimmer.comp.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.viewModel});
@@ -38,15 +39,7 @@ class _HomeState extends State<HomeScreen> {
           future: _planetsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: SizedBox.square(
-                  dimension: 100,
-                  child: Padding(
-                    padding: EdgeInsets.all(20),
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              );
+              return CarouselShimmer();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             }
@@ -57,7 +50,7 @@ class _HomeState extends State<HomeScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: PlanetCard(
                         planet: i,
-                        onTap: () => context.push('${Routes.planet}/${i.id}')
+                        onTap: () => context.push('${Routes.planet}/${i.id}'),
                       ),
                     ),
                   )
@@ -70,7 +63,7 @@ class _HomeState extends State<HomeScreen> {
           future: _filmsFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return ListShimmer();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             }
@@ -106,7 +99,7 @@ class _HomeState extends State<HomeScreen> {
           future: _vehiclesFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return CarouselShimmer();
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             }

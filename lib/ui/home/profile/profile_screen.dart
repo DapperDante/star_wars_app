@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:star_wars/core/api/auth/models/profile.model.dart';
+import 'package:star_wars/ui/components/model/ui.model.dart';
+import 'package:star_wars/ui/components/ui.comp.dart';
 import 'package:star_wars/ui/home/profile/profile_view_model.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -41,36 +43,11 @@ class _ProfileState extends State<ProfileScreen> {
               ),
             ],
           ),
-          Container(
-            height: 100,
-            width: 300,
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      size: 40,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                  ],
-                ),
-                VerticalDivider(color: Theme.of(context).colorScheme.onPrimary),
-                Column(
-                  children: [
-                    Icon(
-                      Icons.cake,
-                      size: 40,
-                      color: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                  ],
-                ),
+          Center(
+            child: CardItems(
+              items: [
+                Item(icon: Icons.star, value: '10'),
+                Item(icon: Icons.cake, value: '26/02/2005'),
               ],
             ),
           ),
