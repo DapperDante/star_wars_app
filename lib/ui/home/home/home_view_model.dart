@@ -1,16 +1,28 @@
-import 'package:star_wars/core/api/swapi/models/film.model.dart';
-import 'package:star_wars/core/api/swapi/models/planet.model.dart';
-import 'package:star_wars/core/api/swapi/models/vehicle.model.dart';
+import 'package:star_wars/services/SharedPreferences.service.dart';
 import 'package:star_wars/services/film.service.dart';
 import 'package:star_wars/services/planet.service.dart';
 import 'package:star_wars/services/vehicle.service.dart';
 
 class HomeViewModel {
-  const HomeViewModel({required this.planetService, required this.filmService, required this.vehicleService});
+  const HomeViewModel({required this.planetService, required this.filmService, required this.vehicleService, required this.prefs});
   final PlanetService planetService;
   final FilmService filmService;
   final VehicleService vehicleService;
-  Future<List<Planet>> fetchPlanets() => planetService.fetchPlanets();
-  Future<List<Film>> fetchFilms() => filmService.fetchFilms();
-  Future<List<Vehicle>> fetchVehicles() => vehicleService.fetchVehicles();
+  final SharedPreferencesService prefs;
+  Future<Map<String, List<dynamic>>> fetchAllData() async {
+    final planets = await planetService.fetchPlanets();
+    final films = await filmService.fetchFilms();
+    final vehicles = await vehicleService.fetchVehicles();
+    return {
+      'planets': planets,
+      'films': films,
+      'vehicles': vehicles,
+    };
+  }
+  Future<void> completeTutorial() async {
+    await prefs.setTutorialCompleted(true);
+  }
+  Future<bool> isTutorialCompleted() async {
+    return await prefs.isTutorialCompleted();
+  }
 }

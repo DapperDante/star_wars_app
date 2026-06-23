@@ -38,6 +38,7 @@ GoRouter appRouter(AuthService auth) => GoRouter(
                   filmService: context.read(),
                   planetService: context.read(),
                   vehicleService: context.read(),
+                  prefs: context.read(),
                 ),
               ),
             ),

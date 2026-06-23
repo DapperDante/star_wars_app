@@ -33,6 +33,7 @@ class AuthService extends ChangeNotifier {
   }
   Future<void> signOut() async {
     await _prefs.removeToken();
+    await _prefs.setTutorialCompleted(false);
     notifyListeners();
   }
   Future<bool> isAuthenticated() async {
