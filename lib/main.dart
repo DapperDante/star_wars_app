@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:star_wars/core/dependencies.dart';
 import 'package:star_wars/core/router/router.dart';
-import 'package:star_wars/core/theme.dart';
+import 'package:star_wars/core/theme.config.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

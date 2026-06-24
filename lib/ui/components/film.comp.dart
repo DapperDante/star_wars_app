@@ -22,6 +22,7 @@ class FilmCard extends StatelessWidget {
             onPressed: (context) => favorite(),
             icon: Icons.favorite,
             label: 'Favorite',
+            backgroundColor: Theme.of(context).colorScheme.primary,
           ),
         ],
       ),

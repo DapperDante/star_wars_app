@@ -6,12 +6,14 @@ import 'package:star_wars/services/SharedPreferences.service.dart';
 import 'package:star_wars/services/auth.service.dart';
 import 'package:star_wars/services/film.service.dart';
 import 'package:star_wars/services/planet.service.dart';
+import 'package:star_wars/services/theme.service.dart';
 import 'package:star_wars/services/vehicle.service.dart';
 
 List<SingleChildWidget> providers = [
   Provider(create: (_) => SharedPreferencesService()),
   Provider(create: (_) => ApiSwapiClient()),
   Provider(create: (context) => ApiAuthClient(prefs: context.read())),
+  Provider(create: (_) => ThemeService()),
   Provider(
     create: (context) => PlanetService(api: context.read<ApiSwapiClient>().client),
   ),

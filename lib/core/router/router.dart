@@ -2,14 +2,16 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:star_wars/core/router/routes.dart';
 import 'package:star_wars/services/auth.service.dart';
-import 'package:star_wars/ui/Login_Screen.dart';
+import 'package:star_wars/ui/auth/login_screen.dart';
+import 'package:star_wars/ui/auth/login_view_model.dart';
 import 'package:star_wars/ui/detail/planet_screen.dart';
 import 'package:star_wars/ui/home/home/home_screen.dart';
 import 'package:star_wars/ui/home/home_layout.dart';
 import 'package:star_wars/ui/home/home/home_view_model.dart';
 import 'package:star_wars/ui/home/profile/profile_screen.dart';
 import 'package:star_wars/ui/home/profile/profile_view_model.dart';
-import 'package:star_wars/ui/welcome_screen.dart';
+import 'package:star_wars/ui/welcome/welcome_screen.dart';
+import 'package:star_wars/ui/welcome/welcome_view_model.dart';
 
 GoRouter appRouter(AuthService auth) => GoRouter(
   refreshListenable: auth,
@@ -18,7 +20,12 @@ GoRouter appRouter(AuthService auth) => GoRouter(
   routes: [
     GoRoute(
       path: Routes.login,
-      builder: (context, _) => LoginScreen(authService: context.read()),
+      builder: (context, _) => LoginScreen(
+        viewModel: LoginViewModel(
+          authService: context.read(),
+          themeService: context.read(),
+        ),
+      ),
       redirect: (context, state) async {
         final loggedIn = await auth.isAuthenticated();
         if (loggedIn) return Routes.home;
@@ -26,8 +33,10 @@ GoRouter appRouter(AuthService auth) => GoRouter(
       },
     ),
     StatefulShellRoute.indexedStack(
-      builder: (_, _, navigationShell) =>
-          HomeLayout(navigationShell: navigationShell),
+      builder: (context, _, navigationShell) => HomeLayout(
+        navigationShell: navigationShell,
+        themeService: context.read(),
+      ),
       branches: [
         StatefulShellBranch(
           routes: [
@@ -65,7 +74,12 @@ GoRouter appRouter(AuthService auth) => GoRouter(
     ),
     GoRoute(
       path: Routes.welcome,
-      builder: (context, _) => IntroScreenDefault(authService: context.read()),
+      builder: (context, _) => WelcomeScreen(
+        viewModel: WelcomeViewModel(
+          authService: context.read(),
+          themeService: context.read(),
+        ),
+      ),
       redirect: (context, state) async {
         final isFirstTime = await auth.isFirstTime();
         if (!isFirstTime) return Routes.login;
