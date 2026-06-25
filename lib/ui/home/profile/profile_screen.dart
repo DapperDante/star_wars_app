@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:star_wars/core/api/auth/models/profile.model.dart';
 import 'package:star_wars/ui/components/model/ui.model.dart';
@@ -51,8 +50,8 @@ class _ProfileState extends State<ProfileScreen> {
             Center(
               child: CardItems(
                 items: [
-                  Item(icon: Icons.star, value: '10'),
-                  Item(icon: Icons.cake, value: '26/02/2005'),
+                  ItemModel(icon: Icon(Icons.star), value: '10'),
+                  ItemModel(icon: Icon(Icons.cake), value: '26/02/2005'),
                 ],
               ),
             ),
@@ -86,7 +85,6 @@ class _ProfileState extends State<ProfileScreen> {
                   zoom: 19.151926040649414,
                 ),
                 onMapCreated: (GoogleMapController controller) {
-                  print('Map created');
                   _mapController.complete(controller);
                 },
                 myLocationEnabled: true,

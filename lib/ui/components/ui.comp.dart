@@ -3,7 +3,7 @@ import 'package:star_wars/ui/components/model/ui.model.dart';
 
 class CardItems extends StatelessWidget {
   const CardItems({super.key, required this.items});
-  final List<Item> items;
+  final List<ItemModel> items;
   @override
   Widget build(BuildContext context) {
     final widgets = items
@@ -11,11 +11,7 @@ class CardItems extends StatelessWidget {
           (item) => [
             Column(
               children: [
-                Icon(
-                  item.icon,
-                  size: 40,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
+                item.icon!,
                 Text(
                   item.value,
                   style: TextStyle(
@@ -46,4 +42,30 @@ class CardItems extends StatelessWidget {
       ),
     );
   }
+}
+class CardCustom extends StatelessWidget {
+  const CardCustom({super.key, required this.item, this.onTap});
+  final ItemModel item;
+  final Function()? onTap;
+  @override
+  Widget build(BuildContext context) => Container(
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.surfaceContainer,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: SizedBox(
+          height: 100,
+          width: 100,
+          child: Column(
+            spacing: 5,
+            children: [(item.image ?? item.icon)!, Text(item.value)],
+          ),
+        ),
+      ),
+    ),
+  );
 }

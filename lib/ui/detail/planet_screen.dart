@@ -58,10 +58,10 @@ class _PlanetScreenState extends State<PlanetScreen> {
                   padding: EdgeInsets.all(15),
                   child: CardItems(
                     items: [
-                      Item(icon: Icons.people, value: planet.population),
-                      Item(icon: Icons.wb_sunny, value: planet.climate),
-                      Item(icon: Icons.terrain, value: planet.terrain),
-                      Item(icon: Icons.height, value: '${planet.diameter} km'),
+                      ItemModel(icon: Icon(Icons.people), value: planet.population),
+                      ItemModel(icon: Icon(Icons.wb_sunny), value: planet.climate),
+                      ItemModel(icon: Icon(Icons.terrain), value: planet.terrain),
+                      ItemModel(icon: Icon(Icons.height), value: '${planet.diameter} km'),
                     ],
                   ),
                 ),

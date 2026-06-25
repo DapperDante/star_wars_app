@@ -5,6 +5,8 @@ import 'package:star_wars/services/auth.service.dart';
 import 'package:star_wars/ui/auth/login_screen.dart';
 import 'package:star_wars/ui/auth/login_view_model.dart';
 import 'package:star_wars/ui/detail/planet_screen.dart';
+import 'package:star_wars/ui/home/databank/databank_screen.dart';
+import 'package:star_wars/ui/home/databank/databank_view_model.dart';
 import 'package:star_wars/ui/home/home/home_screen.dart';
 import 'package:star_wars/ui/home/home_layout.dart';
 import 'package:star_wars/ui/home/home/home_view_model.dart';
@@ -52,6 +54,20 @@ GoRouter appRouter(AuthService auth) => GoRouter(
               ),
             ),
           ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: Routes.databank,
+              builder: (context, _) => DatabankScreen(
+                viewModel: DatabankViewModel(
+                  characterService: context.read(),
+                  droidService: context.read(),
+                  specieService: context.read(),
+                ),
+              ),
+            )
+          ]
         ),
         StatefulShellBranch(
           routes: [

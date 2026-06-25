@@ -5,7 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 
 class FilmCard extends StatelessWidget {
   const FilmCard({super.key, required this.film, required this.favorite});
-  final Film film;
+  final FilmModel film;
   final Function() favorite;
   @override
   Widget build(BuildContext context) => Container(

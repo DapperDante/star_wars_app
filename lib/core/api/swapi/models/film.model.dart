@@ -1,4 +1,4 @@
-class Film {
+class FilmModel {
     String title;
     int episodeId;
     String openingCrawl;
@@ -14,7 +14,7 @@ class Film {
     DateTime edited;
     String url;
 
-    Film({
+    FilmModel({
         required this.title,
         required this.episodeId,
         required this.openingCrawl,
@@ -31,7 +31,7 @@ class Film {
         required this.url,
     });
 
-    factory Film.fromJson(Map<String, dynamic> json) => Film(
+    factory FilmModel.fromJson(Map<String, dynamic> json) => FilmModel(
         title: json["title"],
         episodeId: json["episode_id"],
         openingCrawl: json["opening_crawl"],

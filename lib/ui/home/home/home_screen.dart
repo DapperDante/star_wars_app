@@ -66,12 +66,12 @@ class _HomeState extends State<HomeScreen> {
       future: widget.viewModel.fetchAllData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const InterfazShimmer();
+          return const InterfaceShimmer();
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
         showTutorial();
-        return InterfazCargada(
+        return InterfaceLoaded(
           snapshot: snapshot.data!,
           keys: _homeTutorial.keys,
         );
@@ -80,8 +80,8 @@ class _HomeState extends State<HomeScreen> {
   );
 }
 
-class InterfazCargada extends StatelessWidget {
-  const InterfazCargada({
+class InterfaceLoaded extends StatelessWidget {
+  const InterfaceLoaded({
     super.key,
     required this.snapshot,
     required this.keys,
@@ -151,8 +151,8 @@ class InterfazCargada extends StatelessWidget {
   );
 }
 
-class InterfazShimmer extends StatelessWidget {
-  const InterfazShimmer({super.key});
+class InterfaceShimmer extends StatelessWidget {
+  const InterfaceShimmer({super.key});
 
   @override
   Widget build(BuildContext context) =>

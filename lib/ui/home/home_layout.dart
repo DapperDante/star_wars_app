@@ -23,6 +23,7 @@ class HomeLayout extends StatelessWidget {
         ),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.dataset), label: 'Databank'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           // Add more items for other branches if needed
         ],

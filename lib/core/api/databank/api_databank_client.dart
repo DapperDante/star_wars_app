@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:star_wars/core/config.dart';
 
-class ApiSwapiClient {
+class ApiDatabankClient {
   late final Dio _dio;
-  ApiSwapiClient(){
-    _dio = Dio(BaseOptions(baseUrl: apiSwapiUrl));
+  ApiDatabankClient(){
+    _dio = Dio(BaseOptions(baseUrl: apiDatabankUrl));
   }
   Dio get client => _dio;
 }
